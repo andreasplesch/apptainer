@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - main
+      - debian10-ci
     tags:
       - 'v*.*.*'
 
