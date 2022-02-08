@@ -76,8 +76,24 @@ jobs:
           ./mconfig -v -p /usr/local
           make -C ./builddir all
 
-  debian:
-    name: debian
+  debian-10:
+    name: debian-10
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      # fetch tags as checkout@v2 doesn't do that by default
+      - run: git fetch --prune --unshallow --tags --force
+
+      - name: Build and test deb under docker
+        env:
+          OS_TYPE: debian
+          OS_VERSION: 10
+          # setting GO_ARCH speeds things by using go binaries instead of source
+          GO_ARCH: linux-amd64
+        run: ./scripts/ci-docker-run
+
+  debian-11:
+    name: debian-11
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
