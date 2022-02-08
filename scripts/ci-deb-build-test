@@ -21,8 +21,8 @@ apt-get install -y \
     libarchive-dev \
     libssl-dev \
     python \
-    uuid-dev \
-    golang-go
+    uuid-dev
+#    golang-go
 
 # move source code down a level because debuild writes into parent dir
 shopt -s extglob
